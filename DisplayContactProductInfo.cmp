@@ -1,0 +1,27 @@
+<aura:component controller="FetchContactProductInfo" implements="flexipage:availableForRecordHome,force:hasRecordId" access="global">
+    <aura:attribute name="productList" type="pricebookEntry[]" access="global"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" access="global"/>
+
+    <aura:attribute name="record" type="Object" description="The record object to be displayed"/>
+    <aura:attribute name="CaseRecord" type="Object" description="A simplified view record object to be displayed"/>
+    <aura:attribute name="recordError" type="String" description="An error message bound to force:recordData"/>
+
+    <force:recordData aura:id="record" layoutType="FULL" recordId="{!v.recordId}" targetError="{!v.recordError}"
+        targetRecord="{!v.record}" targetFields="{!v.CaseRecord}" mode="VIEW"/>
+
+    <lightning:card title="Product Information">
+        <div class="slds-p-horizontal_medium slds-p-vertical_small slds-text-body_large slds-border_top slds-border_bottom">                
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-text-align_center">
+                        <b>Cost per Calendar Month <lightning:formattedText title="Case" value="{!v.productList[1].UnitPrice}" /></b>
+                    </div>              
+                    <div class="slds-col slds-text-align_center">
+                        <b>ATM Fee in other currencies <lightning:formattedText title="Case" value="{!v.productList[2].UnitPrice}" /></b>
+                    </div>
+                    <div class="slds-col slds-text-align_center">
+                        <b>Card Replacement Cost <lightning:formattedText title="Case" value="{!v.productList[3].UnitPrice}" /></b>
+                    </div> 
+                </div>
+            </div>
+    </lightning:card>
+</aura:component>
